@@ -3,7 +3,8 @@
 Usage: Make sure you have correct port and host in request_utils/request_config.py
 Make sure AlertGroup and Alert models are suitable for your tasks
 
-Run main.py
+run pip3 install -r requirements.txt
+run python3 main.py
 
 You can test your code with tests in tests folder
 
