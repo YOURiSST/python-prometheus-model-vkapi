@@ -1,0 +1,6 @@
+pydantic
+typing-extensions
+vk_api
+uvicorn
+fastapi
+requests
