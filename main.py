@@ -17,7 +17,7 @@ def get_answer_from_annotations(annotations: Dict[str, str]) -> str:
     return to_ret
 
 
-class Alert(BaseModel):
+class SingleAlert(BaseModel):
     status: str = Field(default={})
     generator_url: str = Field(
         alias="generatorURL",
@@ -33,7 +33,7 @@ class Alert(BaseModel):
     )
 
 
-class AlertGroup(BaseModel):
+class AlertmanagerMessage(BaseModel):
     receiver: str = Field()
     status: str = Field()
     group_key: str = Field(
@@ -52,7 +52,7 @@ class AlertGroup(BaseModel):
         alias="commonLabels",
         default={},
     )
-    alerts: List[Alert] = Field(
+    alerts: List[SingleAlert] = Field(
         default={},
     )
 
@@ -61,7 +61,7 @@ app = FastAPI()
 
 
 @app.post(ALERT_DESTINATION)
-async def receive_alert(request: Request, alert_group: AlertGroup):
+async def receive_alert(request: Request, alert_group: AlertmanagerMessage):
     if len(alert_group.alerts) == 0:
         return
     sender("DOBROYE UTRO, RECEIVED ALERT(s), annotations:\n")
